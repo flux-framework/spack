@@ -247,4 +247,3 @@ class FluxCore(AutotoolsPackage):
                 flags.append("-Wno-error=maybe-uninitialized")
 
         return (flags, None, None)
-
