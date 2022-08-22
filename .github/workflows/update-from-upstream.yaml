@@ -1,0 +1,27 @@
+name: Spack Upstream Updater
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '5 4 * * *'
+
+jobs:
+  update-spack:
+    name: Pull updates from upstream spack
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          ref: develop
+      - name: Update Spack
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          printf "GitHub Actor: ${GITHUB_ACTOR}\n"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"         
+          git remote add upstream "https://x-access-token:${GITHUB_TOKEN}@github.com/spack/spack.git"         
+          git branch
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git pull upstream develop
+          git push origin develop
