@@ -5,10 +5,11 @@ on:
   # this will call spack to retrieve it and open a pull request with changes.
   # This will automate external packages from needing to manually update packages
   issues:
-    types: [opened, edited]
+    types: [labeled]
 
 jobs:
   update-package:
+    if: ${{ github.event.label.name == 'spack-updater' }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
