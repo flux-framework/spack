@@ -9,6 +9,8 @@ This means that:
 
 ## Setting Up
 
+### Repository
+
 To setup, you can do the following:
 
 1. Create a fork of spack to your organization, only grabbing the develop branch.
@@ -34,10 +36,15 @@ cp -R /tmp/spack-template/.github ./.github
 cp -R /tmp/spack-template/repo.yaml ./repo.yaml
 ```
 
-You'll then want to update the repo.yaml with some name for your packages repository (it will
-be added to spack and needs a different name than builtin), delete the subdirectories of packages
-that you don't need (and add your own from spack). After that, you can push the main branch
-and make it default so it's the first seen upon visiting your repository (akin to this one!)
+### Content
+
+You'll then want to:
+
+1. Update the repo.yaml with some name for your packages repository (it will
+be added to spack and needs a different name than builtin).
+2. Delete the subdirectories of packages that you don't need (and add your own from spack). 
+3. Ensure issues are enabled on your fork.
+4. After that, you can push the main branch and make it default so it's the first seen upon visiting your repository (akin to this one!)
 
 ### Packages Workflows
 

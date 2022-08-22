@@ -17,7 +17,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Spack Update
-        uses: sciworks/spack-updater@main
+        uses: sciworks/spack-updater@test
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: ${{ github.actor }}
@@ -25,18 +25,8 @@ jobs:
           # TODO this can eventually be a matrix
           package: flux-core
 
-          # Spack repository to use to compare
-          upstream: https://github.com/spack/spack
-
-          # Branch to spack (updates to spack)
-          branch: develop
+          # This should always be the repository here
+          upstream: ${{ github.repository }}
 
           # Local branch to updatee here from spack (PR)
           local_branch: main
-
-          # Open a pull request here when we find changes to spack
-          pull_request: true
-
-          # Open an issue here to trigger an issue -> PR to update spack
-          # requires https://github.com/spack/spack/pull/31975
-          open_issue: true
