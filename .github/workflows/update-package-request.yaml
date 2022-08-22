@@ -14,19 +14,15 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
+      with:
+        ref: develop
+
     - name: Parse Update Issue
-      env:
+      uses: sciworks/spack-updater/parse-issue@test
+      with:
         title: ${{ github.event.issue.title }}
         number: ${{ github.event.issue.number }}
-      run: |  
-        printf "Issue title: ${title}\n"
-        printf "Issue number: ${number}\n"
-        echo "${{ github.event.issue.body }}" > new-issue.txt
-        cat new-issue.txt
-        # Script to parse the issue, sets envars needed for subsequent workflows
-        wget https://raw.githubusercontent.com/sciworks/spack-updater/test/scripts/parse_issue.py
-        python parse_issue.py new-issue.txt
-        echo "issue_number=${number}" >> $GITHUB_ENV
+        body: ${{ github.event.issue.body }}
 
     - name: View Package Request
       env:
