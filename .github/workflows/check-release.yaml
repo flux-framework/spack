@@ -7,13 +7,18 @@ on:
 jobs:
   get-release-version:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        package: [flux-core, flux-sched]
     steps:
       - uses: actions/checkout@v3
       - name: Update Version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          package: ${{ matrix.package }}
         id: check
-        run: python script/get_releases.py packages/flux-core
+        run: python script/get_releases.py packages/${package}
 
       - name: Install Spack
         run: |
@@ -41,12 +46,12 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /opt/spack/opt/spack
-          key: ${{ runner.os }}-${{ env.runner_cpu }}-flux-core
+          key: ${{ runner.os }}-${{ env.runner_cpu }}-${{ matrix.package }}
 
       - name: Install pakages
         run: pip install pakages[all]
 
-      - name: Flux Core Spack Build
+      - name: ${{ matrix.package }} Spack Build
         uses: syspack/pakages/action/install@main
         with:
           user: ${{ github.actor }}
@@ -58,14 +63,15 @@ jobs:
       - name: Commit latest release version
         if: steps.check.outputs.version != ''
         env:
+          package: ${{ matrix.package }}
           version: ${{ steps.check.outputs.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Found new version ${version}"
-          echo "::group::flux-core package.py"
-          cat packages/flux-core/package.py
-          echo "::endgroup::"          
-          export BRANCH_FROM="release/${version}"
+          echo "::group::${package} package.py"
+          cat packages/${package}/package.py
+          echo "::endgroup::"      
+          export BRANCH_FROM="release/${package}-${version}"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git branch
           git checkout -b "${BRANCH_FROM}" || git checkout "${BRANCH_FROM}"
@@ -78,7 +84,7 @@ jobs:
           else
              printf "Changes\n"
              today=$(date '+%Y-%m-%d')
-             git commit -a -m "Automated deployment to update flux package versions ${today}" -m "Signed-off-by: github-actions <github-actions@users.noreply.github.com>"  
+             git commit -a -m "Automated deployment to update ${package} versions ${today}" -m "Signed-off-by: github-actions <github-actions@users.noreply.github.com>"  
              git push origin "${BRANCH_FROM}"
           fi
           echo "PULL_REQUEST_FROM_BRANCH=${BRANCH_FROM}" >> $GITHUB_ENV

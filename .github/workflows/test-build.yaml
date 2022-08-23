@@ -15,6 +15,11 @@ jobs:
   package-builds:
     name: Test Package Builds
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        package: [flux-core, flux-sched]
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -56,5 +61,5 @@ jobs:
           user: ${{ github.actor }}
           token: ${{ secrets.GITHUB_TOKEN }}
           builder: spack
-          package: flux-core
+          package: ${{ matrix.package }}
           repo: .
