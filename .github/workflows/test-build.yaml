@@ -37,14 +37,14 @@ jobs:
           runner_cpu=$(archspec cpu)
           echo "runner_cpu=${runner_cpu}" >> $GITHUB_ENV
 
-#      - name: Clingo Cache
-#        uses: actions/cache@v3
-#        with:
-#          path: /opt/spack/opt/spack
-#          key: ${{ runner.os }}-${{ env.runner_cpu }}-clingo
+      - name: Clingo Cache
+        uses: actions/cache@v3
+        with:
+          path: /opt/spack/opt/spack
+          key: ${{ runner.os }}-${{ env.runner_cpu }}-clingo
 
-#      - name: Install Clingo
-#        run: spack install clingo
+      - name: Install Clingo
+        run: spack install clingo
 
       - name: ${{ matrix.package }} Build Cache
         uses: actions/cache@v3
