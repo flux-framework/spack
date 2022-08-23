@@ -46,16 +46,16 @@ jobs:
       - name: Install Clingo
         run: spack install clingo
 
-      - name: Flux Core Build Cache
+      - name: ${{ matrix.package }} Build Cache
         uses: actions/cache@v3
         with:
           path: /opt/spack/opt/spack
-          key: ${{ runner.os }}-${{ env.runner_cpu }}-flux-core
+          key: ${{ runner.os }}-${{ env.runner_cpu }}-${{ matrix.package }}
 
       - name: Install pakages
         run: pip install pakages[all]
 
-      - name: Flux Core Spack Build
+      - name: ${{ matrix.package }} Spack Build
         uses: syspack/pakages/action/install@main
         with:
           user: ${{ github.actor }}
