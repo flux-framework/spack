@@ -45,7 +45,8 @@ be added to spack and needs a different name than builtin).
 2. Delete the subdirectories of packages that you don't need (and add your own from spack). 
 3. Ensure issues are enabled on your fork.
 4. Add a label for "spack-updater"
-5. After that, you can push the main branch and make it default so it's the first seen upon visiting your repository (akin to this one!)
+5. Ensure your develop branch is protected (so you cannot delete it).
+6. After that, you can push the main branch and make it default so it's the first seen upon visiting your repository (akin to this one!)
 
 ### Packages Workflows
 

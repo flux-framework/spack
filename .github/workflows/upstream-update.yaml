@@ -25,19 +25,3 @@ jobs:
           git config --global user.email "github-actions@users.noreply.github.com"
           git pull upstream develop
           git push origin develop
-          
-          # Copy files to temporary space to update
-          mkdir -p /tmp/packages
-          cp -R var/spack/repos/builtin/packages/flux-core /tmp/packages/flux-core
-          git fetch
-          git checkout main
-          cp /tmp/packages/flux-core/* packages/flux-core
-          git add packages/flux-core/*
-          
-          if git diff-index --quiet HEAD --; then
-              printf "No changes\n"
-          else
-             printf "Changes\n"
-             git commit -m "Automated update for packages from upstream $(date '+%Y-%m-%d')"
-             git push origin main
-          fi

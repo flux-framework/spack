@@ -5,19 +5,23 @@ on:
     branches:
       - main
 
-    # This will run weekly on Wednesday to look for changes from spack to here
-    schedule:
-      - cron:  '0 10 * * 3'
+  issues:
+    types: [labeled]
+
+  # This will run weekly on Wednesday to look for changes from spack to here
+  schedule:
+    - cron:  '0 10 * * 3'
 
 jobs:
   update-spack:
     name: Update To and From Spack
+    if: ${{ github.event_name != 'issues' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Spack Update
-        uses: sciworks/spack-updater@test
+        uses: sciworks/spack-updater@new-design
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: ${{ github.actor }}
@@ -28,5 +32,27 @@ jobs:
           # This should always be the repository here
           upstream: ${{ github.repository }}
 
-          # Local branch to updatee here from spack (PR)
+          # Local branch to update here from spack (PR)
+          local_branch: main
+
+  manual-update-spack:
+    name: Update To and From Spack
+    if: ${{ github.event.label.name == 'spack-updater' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Spack Update
+        uses: sciworks/spack-updater@new-design
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: ${{ github.actor }}
+          repo: .        
+          # TODO this can eventually be a matrix
+          package: flux-core
+
+          # This should always be the repository here
+          upstream: ${{ github.repository }}
+
+          # Local branch to update here from spack (PR)
           local_branch: main
