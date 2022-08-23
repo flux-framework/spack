@@ -8,6 +8,9 @@ import os
 # Look for version updates for a package
 # python script/get_releases.py packages/flux-core
 
+master_branch = 'version("master", branch="master")'
+main_branch = 'version("main", branch="main")'
+
 token = os.environ.get("GITHUB_TOKEN")
 headers = {}
 if token:
@@ -66,7 +69,7 @@ def update_package(package_dir, latest):
     last_line = None
     lines = []
     for line in package_py.split("\n"):
-        if last_line and 'version("master", branch="master")' in last_line:
+        if last_line and master_branch in last_line or main_branch in last_line:
             print("Updating with: %s" % newline)
             lines.append(newline)
         lines.append(line)
