@@ -69,7 +69,7 @@ def update_package(package_dir, latest):
     last_line = None
     lines = []
     for line in package_py.split("\n"):
-        if last_line and master_branch in last_line or main_branch in last_line:
+        if last_line and (master_branch in last_line or main_branch in last_line):
             print("Updating with: %s" % newline)
             lines.append(newline)
         lines.append(line)
