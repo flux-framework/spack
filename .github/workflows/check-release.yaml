@@ -1,5 +1,8 @@
 name: Update with Latest Release
 on:
+  # Ensure we can trigger on demand
+  workflow_dispatch:
+
   # schedule runs on default branch
   schedule:
     - cron:  '0 2 * * *'
