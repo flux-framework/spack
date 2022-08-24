@@ -21,6 +21,7 @@ jobs:
         run: python script/get_releases.py packages/${package}
 
       - name: Install Spack
+        if: steps.check.outputs.version != ''
         run: |
           git clone --depth 1 https://github.com/spack/spack /opt/spack
           echo "/opt/spack/bin" >> $GITHUB_PATH
@@ -28,30 +29,36 @@ jobs:
           spack external find
 
       - name: Derive Microarchitecture
+        if: steps.check.outputs.version != ''
         run: |
           pip install archspec
           runner_cpu=$(archspec cpu)
           echo "runner_cpu=${runner_cpu}" >> $GITHUB_ENV
 
       - name: Clingo Cache
+        if: steps.check.outputs.version != ''
         uses: actions/cache@v3
         with:
           path: /opt/spack/opt/spack
           key: ${{ runner.os }}-${{ env.runner_cpu }}-clingo
 
       - name: Install Clingo
+        if: steps.check.outputs.version != ''
         run: spack install clingo
 
       - name: ${{ matrix.package }} Build Cache
+        if: steps.check.outputs.version != ''
         uses: actions/cache@v3
         with:
           path: /opt/spack/opt/spack
           key: ${{ runner.os }}-${{ env.runner_cpu }}-${{ matrix.package }}
 
       - name: Install pakages
+        if: steps.check.outputs.version != ''
         run: pip install pakages[all]
 
       - name: ${{ matrix.package }} Spack Build
+        if: steps.check.outputs.version != ''
         uses: syspack/pakages/action/install@main
         with:
           user: ${{ github.actor }}
