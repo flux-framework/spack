@@ -4,6 +4,8 @@ on:
     # This will look for changes in packages here to PR back to spack
     branches:
       - main
+    paths:
+      - 'packages/**'
 
   issues:
     types: [labeled]
@@ -25,7 +27,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Spack Update
-        uses: sciworks/spack-updater@new-design
+        uses: sciworks/spack-updater@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: ${{ github.actor }}
@@ -50,7 +52,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Spack Update
-        uses: sciworks/spack-updater@new-design
+        uses: sciworks/spack-updater@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: ${{ github.actor }}
