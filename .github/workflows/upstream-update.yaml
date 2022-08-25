@@ -1,6 +1,5 @@
 name: Spack Upstream Updater
 on:
-  pull_request: []
   workflow_dispatch:
   schedule:
     - cron:  '5 4 * * *'
@@ -11,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update with Upstream
-        uses: sciworks/spack-updater/upstream@add/tests
+        uses: sciworks/spack-updater/upstream@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
