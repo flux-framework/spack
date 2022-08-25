@@ -110,10 +110,11 @@ the spack updater action, discussed next, will prepare to open a pull request to
 **Important** checking for new releases is currently only supported for GitHub releases. If you have another
 package release type with an API that could be supported, please open an issue and it can be added.
 
+### Spack Updater
 
-spack updater that looks for changes here, and then opens and issue that can be clicked to open a PR to spack (e.g., https://github.com/spack/spack/pull/32320), or if there are changes to spack, opens a PR here (this is the last one I need to ensure is still working after the changes, so far one direction to spack has worked ok!)
-I'd really like the opened PR to spack to link back to the issue, but so far adding variables to the get request doesn't seem to work (it gets stripped!) So I'm taking two seconds to just copy paste the issue into the new PR and that works for me, for now.
-:tada:
-1
+This action is the core of the set, as it is going to coordinate changes from your repository
+here to spack! It runs nightly to essentially do a diff between your packages on the main branch
+and spack develop, and:
 
-
+ - Given changes here, a branch is prepared to pull request to spack, and an issue opned you can click to open the PR (e.g, [see this example](https://github.com/spack/spack/pull/32320))
+ - If there are changes to spack, it will instead open a pull request here (the less likely case if you do most development here, but not impossible!)
