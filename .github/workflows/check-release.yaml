@@ -17,11 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Update Version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          package: ${{ matrix.package }}
+        uses: sciworks/spack-updater/release-check@main
         id: check
-        run: python script/get_releases.py packages/${package}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          package: ${{ matrix.package }}
+          repo: flux-framework/${{ matrix.package }}
 
       - name: Install Spack
         if: steps.check.outputs.version != ''
