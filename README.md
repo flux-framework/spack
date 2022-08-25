@@ -12,5 +12,7 @@ Or in short terms, you can maintain your spack packages in one simple place,
 and the automation will support you to update the package versions, test builds
 with updates (and nightly) and assist with opening pull requests to spack.
 
-Interested to create your own, or see how it works?
-Check out the [spack updater action](https://github.com/sciworks/spack-updater) and ⭐️ [documentation](https://sciworks.github.io/spack-updater/) ⭐️.
+Interested to create your own, or see how it works? Check out:
+
+ - The [Spack Updater Action](https://github.com/sciworks/spack-updater) on GitHub
+ - ⭐️ [Spack Updater Documentation](https://sciworks.github.io/spack-updater/) ⭐️.

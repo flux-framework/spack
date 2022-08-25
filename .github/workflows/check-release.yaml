@@ -3,8 +3,6 @@ on:
   # Ensure we can trigger on demand
   workflow_dispatch:
 
-  pull_request: []
-
   # schedule runs on default branch
   schedule:
     - cron:  '0 2 * * *'
@@ -19,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Update Version
-        uses: sciworks/spack-updater/release-check@add/release-checker
+        uses: sciworks/spack-updater/release-check@main
         id: check
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
