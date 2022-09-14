@@ -58,9 +58,5 @@ jobs:
           user: ${{ github.actor }}
           repo: .        
           package: ${{ matrix.package }}
-
-          # This should always be the repository here
-          upstream: ${{ github.repository }}
-
           # Local branch to update here from spack (PR)
           local_branch: main
