@@ -8,8 +8,6 @@ jobs:
   update-spack:
     name: Pull updates from upstream spack
     runs-on: ubuntu-latest
-    permissions:
-      workflow: write
     steps:
       - name: Update with Upstream
         uses: sciworks/spack-updater/upstream@main
