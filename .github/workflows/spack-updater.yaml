@@ -19,8 +19,6 @@ jobs:
     name: Update To and From Spack
     if: ${{ github.event_name != 'issues' }}
     runs-on: ubuntu-latest
-    permissions:
-      workflows: write
     strategy:
       max-parallel: 4
       matrix:
@@ -46,8 +44,6 @@ jobs:
     name: Update To and From Spack
     if: ${{ github.event.label.name == 'spack-updater' }}
     runs-on: ubuntu-latest
-    permissions:
-      workflows: write
     strategy:
       max-parallel: 4
       matrix:
