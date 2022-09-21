@@ -34,8 +34,8 @@ jobs:
           repo: .        
           package: ${{ matrix.package }}
 
-          # This should always be the repository here
-          upstream: ${{ github.repository }}
+          # This should always be upstream spack
+          upstream: https://github.com/spack/spack
 
           # Local branch to update here from spack (PR)
           local_branch: main
@@ -55,6 +55,7 @@ jobs:
         uses: sciworks/spack-updater@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          upstream: https://github.com/spack/spack
           user: ${{ github.actor }}
           repo: .        
           package: ${{ matrix.package }}
