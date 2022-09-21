@@ -1,5 +1,6 @@
 name: Spack Updater
 on:
+  workflow_dispatch:
   push:
     # This will look for changes in packages here to PR back to spack
     branches:
