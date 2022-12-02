@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'packages/**'
+      - '.github/**'
   
   schedule:
     - cron:  '0 4 * * *'  
@@ -17,14 +18,15 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        package: [flux-core, flux-sched, flux-pmix]
-
+        # package and requiring fortran to be installed
+        package: [[flux-core, false], [flux-sched, false], [flux-pmix, true]]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Test Build
-        uses: sciworks/spack-updater/build@main
+        uses: sciworks/spack-updater/build@add/fortran-compiler-install
         with:
           user: ${{ github.actor }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          package: ${{ matrix.package }}
+          package: ${{ matrix.package[0] }}
+          fortran: "${{ matrix.package[1] == 'true' }}"
