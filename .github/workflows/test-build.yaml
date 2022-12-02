@@ -29,4 +29,4 @@ jobs:
           user: ${{ github.actor }}
           token: ${{ secrets.GITHUB_TOKEN }}
           package: ${{ matrix.package[0] }}
-          fortran: "${{ matrix.package[1] == 'true' }}"
+          fortran: "${{ matrix.package[1] == true }}"
