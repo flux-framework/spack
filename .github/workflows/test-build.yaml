@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - 'packages/**'
-      - '.github/**'
   
   schedule:
     - cron:  '0 4 * * *'  
