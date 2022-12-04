@@ -18,12 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Update Version
-        uses: sciworks/spack-updater/release-check@add/fortran-compiler-install
+        uses: sciworks/spack-updater/release-check@main
         id: check
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           package: ${{ matrix.package[0] }}          
-          fortran: "${{ matrix.package[1] == 'true' }}"
+          fortran: "${{ matrix.package[1] == true }}"
 
           # These are defaults
           pull_request: true
