@@ -19,7 +19,7 @@ jobs:
   update-spack:
     name: Update To and From Spack
     if: ${{ github.event_name != 'issues' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       max-parallel: 4
       matrix:
