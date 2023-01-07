@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update with Upstream
-        uses: sciworks/spack-updater/upstream@main
+        uses: sciworks/spack-updater/upstream@test/vanilla-spack-build
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

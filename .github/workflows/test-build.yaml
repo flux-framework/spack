@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Test Build
-        uses: sciworks/spack-updater/build@main
+        uses: sciworks/spack-updater/build@test/vanilla-spack-build
         with:
           user: ${{ github.actor }}
           token: ${{ secrets.GITHUB_TOKEN }}
