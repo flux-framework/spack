@@ -318,6 +318,9 @@ class URLFetchStrategy(FetchStrategy):
         url = None
         errors = []
         for url in self.candidate_urls:
+            if url == "https://github.com/flux-framework/flux-core-v0.46/releases/download/v0.46.1/flux-core-0.46.1.tar.gz":
+                url = "https://github.com/flux-framework/flux-core/releases/download/v0.46.1/flux-core-0.46.1.tar.gz"
+            print(url)
             if not self._existing_url(url):
                 continue
 
