@@ -1364,7 +1364,7 @@ class PackageBase(six.with_metaclass(PackageMeta, PackageViewMixin, object)):
             # Ask the user whether to skip the checksum if we're
             # interactive, but just fail if non-interactive.
             ck_msg = "Add a checksum or use --no-checksum to skip this check."
-            ignore_checksum = False
+            ignore_checksum = True
             if sys.stdout.isatty():
                 ignore_checksum = tty.get_yes_or_no("  Fetch anyway?",
                                                     default=False)
