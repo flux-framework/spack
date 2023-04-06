@@ -37,12 +37,14 @@ class FluxPmix(AutotoolsPackage):
             bash = which("bash")
             bash("./autogen.sh")
 
-    @run_after("install", when="@:0.3.0")
+    @run_after("install")
     def add_pluginpath(self):
-        rcfile = join_path(self.prefix.etc, "flux/shell/lua.d/mpi/openmpi@5.lua")
-        filter_file(
-            r"pmix/pmix.so", join_path(self.prefix.lib, "flux/shell/plugins/pmix/pmix.so"), rcfile
-        )
+        spec = self.spec
+        if spec.satisfies("@:0.3.0"):
+            rcfile = join_path(self.prefix.etc, "flux/shell/lua.d/mpi/openmpi@5.lua")
+            filter_file(
+                r"pmix/pmix.so", join_path(self.prefix.lib, "flux/shell/plugins/pmix/pmix.so"), rcfile
+            )
 
     def setup_run_environment(self, env):
         env.prepend_path("FLUX_SHELL_RC_PATH", join_path(self.prefix, "etc/flux/shell/lua.d"))
