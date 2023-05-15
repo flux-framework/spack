@@ -19,7 +19,7 @@ jobs:
       max-parallel: 4
       matrix:
         # package and requiring fortran to be installed
-        package: [[flux-core, false], [flux-sched, false], [flux-pmix, true]]
+        package: [[flux-core, false], [flux-sched, false], [flux-pmix, true], [flux-security, false]]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
