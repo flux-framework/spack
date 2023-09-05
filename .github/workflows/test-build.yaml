@@ -22,7 +22,7 @@ jobs:
         package: [[flux-core, false], [flux-sched, false], [flux-pmix, true], [flux-security, false]]
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Test Build
         uses: sciworks/spack-updater/build@main
         with:
