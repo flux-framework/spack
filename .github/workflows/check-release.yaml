@@ -16,7 +16,7 @@ jobs:
         # package and requiring fortran to be installed
         package: [[flux-core, false], [flux-sched, false], [flux-pmix, true], ['flux-security', false]]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Update Version
         uses: sciworks/spack-updater/release-check@main
         id: check
