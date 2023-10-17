@@ -30,3 +30,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           package: ${{ matrix.package[0] }}
           fortran: "${{ matrix.package[1] == true }}"
+          cache_count: "2"
