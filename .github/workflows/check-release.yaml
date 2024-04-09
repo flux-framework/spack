@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Update Version
-        uses: sciworks/spack-updater/release-check@main
+        uses: sciworks/spack-updater/release-check@add-buildcache-support
         id: check
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
