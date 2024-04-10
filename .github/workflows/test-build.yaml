@@ -14,7 +14,7 @@ on:
 jobs:
   package-builds:
     name: Test Package Builds
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       max-parallel: 4
       matrix:
@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Test Build
-        uses: sciworks/spack-updater/build@add-buildcache-support
+        uses: sciworks/spack-updater/build@main
         with:
           package: ${{ matrix.package[0] }}
           fortran: "${{ matrix.package[1] == true }}"
