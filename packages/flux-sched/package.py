@@ -24,7 +24,6 @@ class FluxSched(CMakePackage, AutotoolsPackage):
     license("LGPL-3.0-only")
 
     version("master", branch="master")
-    version("0.34.0", sha256="10c03d78fa2302de7ddf9599ea59fb7a2dc7ccf6f526fd9fbfc9e3ff6ba39713")
     version("0.33.1", sha256="d0a1e504226d69fa8a247e9090d94ccc5e5f5fb028aab805f9cd95379bd8b1b3")
     version("0.33.0", sha256="d2e97121aed29bb1c6bfac602d890edb2f0a18d5303205b266a33c66fff1d61c")
     version("0.32.0", sha256="f0b88881f0154057de3dd5485a3e1cfc0b9b64c98052bda7d5fed7c05b5e02f3")
@@ -187,6 +186,10 @@ class FluxSched(CMakePackage, AutotoolsPackage):
 
 class CMakeBuilder(CMakeBuilder):
     def cmake_args(self):
+        ver_in_src = os.path.exists(os.path.join(self.stage.source_path, "flux-sched.ver"))
+        # flux-sched before v0.33 does not correctly set the version even when the file is present.
+        if self.spec.satisfies("@:0.33") or not ver_in_src:
+            return [self.define("FLUX_SCHED_VER", self.spec.version)]
         return []
 
 
