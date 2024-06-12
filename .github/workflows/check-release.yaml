@@ -1,6 +1,5 @@
 name: Update with Latest Release
 on:
-  # Ensure we can trigger on demand
   workflow_dispatch:
   pull_request: []
 
