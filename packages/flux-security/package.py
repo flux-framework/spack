@@ -38,6 +38,7 @@ class FluxSecurity(AutotoolsPackage):
     depends_on("uuid")
     depends_on("munge")
     depends_on("libpam")
+    depends_on("gettext")
 
     def setup(self):
         pass
