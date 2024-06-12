@@ -1,7 +1,6 @@
 name: Update with Latest Release
 on:
   workflow_dispatch:
-  pull_request: []
 
   # schedule runs on default branch
   schedule:
