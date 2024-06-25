@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
+      fail-fast: false
       matrix:
         # package and requiring fortran to be installed
         package: [[flux-core, false], [flux-sched, false], [flux-pmix, true], ['flux-security', false]]
