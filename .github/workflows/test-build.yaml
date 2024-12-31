@@ -28,3 +28,9 @@ jobs:
         with:
           package: ${{ matrix.package[0] }}
           fortran: "${{ matrix.package[1] == true }}"
+      - name: Save Stage on Failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: spack-stage-${{ matrix.package[0] }}
+          path: /tmp/runner/spack-stage
