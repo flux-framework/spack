@@ -13,8 +13,11 @@ jobs:
       max-parallel: 4
       fail-fast: false
       matrix:
-        # package and requiring fortran to be installed
-        package: [[flux-core, false], [flux-sched, false], [flux-pmix, true], ['flux-security', false]]
+        # package, requiring fortran to be installed, and test build
+        package: [[flux-core, false, false], 
+                  [flux-sched, false, true], 
+                  [flux-pmix, true, true], 
+                  [flux-security, false, true]]
     steps:
       - uses: actions/checkout@v4
       - name: Update Version
@@ -24,7 +27,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           package: ${{ matrix.package[0] }}          
           fortran: "${{ matrix.package[1] == true }}"
+          test_build: "${{ matrix.package[2] == true }}"
 
           # These are defaults
           pull_request: true
-          test_build: true
