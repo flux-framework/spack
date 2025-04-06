@@ -106,7 +106,7 @@ class FluxCore(AutotoolsPackage):
     depends_on("py-setuptools", type="build", when="@0.67.0:")
     # distutils was dropped in Python 3.12, this fallback was added 9/19/2023
     # for version 0.54.0 but we don't need it until setuptools is dropped
-    depends_on("py-packaging", type=("build", "run"), when="@0.67.0:")
+    depends_on("py-packaging", type=("build", "run"))
     depends_on("jansson@2.10:")
     depends_on("pkgconfig")
     depends_on("lz4")
