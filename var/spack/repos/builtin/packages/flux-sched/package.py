@@ -64,7 +64,7 @@ class FluxSched(CMakePackage, AutotoolsPackage):
 
     depends_on("c", type="build")  # generated
     depends_on("cxx", type="build")  # generated
-    
+
     # Needs to be seen if tis is needed once we remove the default variants
     depends_on(
         "boost+exception+filesystem+system+serialization+graph+container+regex@1.53.0,1.59.0: "
