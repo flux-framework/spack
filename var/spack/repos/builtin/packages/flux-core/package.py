@@ -104,9 +104,6 @@ class FluxCore(AutotoolsPackage):
     depends_on("py-jsonschema@2.3:", type=("build", "run"), when="@:0.58.0")
     depends_on("py-ply", type=("build", "run"), when="@0.46.1:")
     depends_on("py-setuptools", type="build", when="@0.67.0:")
-    # distutils was dropped in Python 3.12, this fallback was added 9/19/2023
-    # for version 0.54.0 but we don't need it until setuptools is dropped
-    depends_on("py-packaging", type=("build", "run"))
     depends_on("jansson@2.10:")
     depends_on("pkgconfig")
     depends_on("lz4")
@@ -188,11 +185,11 @@ class FluxCore(AutotoolsPackage):
     def lua_lib_dir(self):
         return os.path.join("lib", "lua", str(self.lua_version))
 
-    def setup_build_environment(self, env: EnvironmentModifications) -> None:
+    def setup_build_environment(self, env):
         #  Ensure ./fluxometer.lua can be found during flux's make check
         env.append_path("LUA_PATH", "./?.lua", separator=";")
 
-    def setup_run_environment(self, env: EnvironmentModifications) -> None:
+    def setup_run_environment(self, env):
         # If this package is external, we expect the external provider to set things
         # like LUA paths. So, we early return. If the package is not external,
         # properly set these environment variables to make sure the user environment
