@@ -23,7 +23,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        package: [flux-core, flux-sched, flux-pmix, flux-security]
+        package: [flux_core, flux_sched, flux_pmix, flux_security]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -48,7 +48,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        package: [flux-core, flux-sched, flux-pmix, flux-security]
+        package: [flux_core, flux_sched, flux_pmix, flux_security]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3

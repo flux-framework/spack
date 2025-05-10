@@ -14,10 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         # package, requiring fortran to be installed, and test build
-        package: [[flux-core, false, false], 
-                  [flux-sched, false, true], 
-                  [flux-pmix, true, true], 
-                  [flux-security, false, true]]
+        package: [[flux_core, false, false], 
+                  [flux_sched, false, true], 
+                  [flux_pmix, true, true], 
+                  [flux_security, false, true]]
     steps:
       - uses: actions/checkout@v4
       - name: Update Version
