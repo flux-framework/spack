@@ -19,13 +19,12 @@ jobs:
       max-parallel: 4
       matrix:
         # package and requiring fortran to be installed (only pmix)
-        package: [[flux-sched, false], [flux-pmix, true], [flux-security, false]]
-        # package: [[flux-core, false], [flux-sched, false], [flux-pmix, true], [flux-security, false]]
+        package: [[flux-core, false], [flux-sched, false], [flux-pmix, true], [flux-security, false]]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Test Build
-        uses: sciworks/spack-updater/build@main
+        uses: sciworks/spack-updater/build@package-underscore
         with:
           package: ${{ matrix.package[0] }}
           fortran: "${{ matrix.package[1] == true }}"
