@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Test Build
-        uses: sciworks/spack-updater/build@package-underscore
+        uses: sciworks/spack-updater/build@main
         with:
           package: ${{ matrix.package[0] }}
           fortran: "${{ matrix.package[1] == true }}"
