@@ -7,10 +7,7 @@ on:
 jobs:
   update-spack:
     name: Pull updates from upstream spack
-    permissions:
-      contents: write
-      actions: write
-
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Update with Upstream
