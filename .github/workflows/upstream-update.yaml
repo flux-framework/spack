@@ -4,6 +4,10 @@ on:
   schedule:
     - cron:  '5 4 * * *'
 
+permissions:
+  contents: write
+  workflows: write
+
 jobs:
   update-spack:
     name: Pull updates from upstream spack
